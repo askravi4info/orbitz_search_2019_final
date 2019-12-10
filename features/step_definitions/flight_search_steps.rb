@@ -46,12 +46,13 @@ When(/^user search for the future flights$/) do
   #   page.search_for_flights_element.click
   # end
 
-  step 'user is on the Orbitz home page'
+  step 'When The user clicks on the Flights tab'
+  step 'User selects the Round-trip option'
 
 end
 
 When(/^I read the yml file, I should see the data$/) do
-@test_info = YAML.load_file 'features/support/test_data.yml'
+  @test_info = YAML.load_file 'features/support/test_data.yml'
   p @test_info.fetch 'name'
   p @test_info['qa']['company']
   p 'done'
