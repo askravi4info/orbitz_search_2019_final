@@ -1,9 +1,11 @@
 # 1) Imperative positive search scenario
+@flight
 Feature: Orbitz Flight Search
 
   Background:
     Given The user is on the Orbitz home page
-@database
+
+  @smoke @regression_tests
   Scenario: Verify the user is able to search for the flights with the future dates
     When The user clicks on the Flights tab
     And User selects the Round-trip option
@@ -19,7 +21,7 @@ Feature: Orbitz Flight Search
     When user search for the future flights
     Then User gets the list of all available flights for the given date and airport
 
-
+  @regression_tests
 #2) Imperative Positive Flight Search Scenario Outline
   Scenario Outline: Verify the user is able to search for the flights with the future dates and different cities
     When The user clicks on the Flights tab
@@ -36,7 +38,7 @@ Feature: Orbitz Flight Search
       | columbus       | CMH              | chicago      | ORD              |
       | chicago        | ORD              | washington   | IAD              |
 
-
+  @smoke
 #3) Imperative Negative Flight Search Scenario - Error message
   Scenario: Verify the user is warned when searching for the flights with past dates
     When The user clicks on the Flights tab
@@ -48,6 +50,7 @@ Feature: Orbitz Flight Search
     And User clicks on the search button
     Then User gets the error message
 
+  @wip
 #4) Declarative Negative Flight Search - Error message
   Scenario: Verify the user is warned when searching for the flights with past dates
     When User clicks on the round trip option in the Flights tab
@@ -55,6 +58,7 @@ Feature: Orbitz Flight Search
     And User clicks on the search button
     Then User should be warned with an error message
 
+  @wip
 #5) Declarative Flight Search Scenario - using Inline table format
   Scenario: Verify the user is able to search for the flights with future dates
     When User clicks on the round trip option in the Flights tab
@@ -66,6 +70,7 @@ Feature: Orbitz Flight Search
     And User clicks on the Search button
     Then All the available flights should be displayed
 
-Scenario: testing yml files
-  When I read the yml file, I should see the data
+  @smoke
+  Scenario: testing yml files
+    When I read the yml file, I should see the data
 
