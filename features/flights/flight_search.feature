@@ -74,3 +74,6 @@ Feature: Orbitz Flight Search
   Scenario: testing yml files
     When I read the yml file, I should see the data
 
+  Scenario: Verify the flight search results are displayed by sort order of price
+    When user search for the future flights
+    Then verify the flight search results are displayed by sort order of price

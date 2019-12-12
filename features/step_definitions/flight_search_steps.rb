@@ -46,9 +46,15 @@ When(/^user search for the future flights$/) do
   #   page.search_for_flights_element.click
   # end
 
-  step 'When The user clicks on the Flights tab'
-  step 'User selects the Round-trip option'
-
+  steps %Q{
+    When The user clicks on the Flights tab
+    And User selects the Round-trip option
+    And User enters the columbus city in the Flying from text box and selects the CMHS airport
+    And User enters the cleveland city in the Flying to text box and selects the CLE airport
+    And User enters the future date in the departing date field
+    And User enters the future date in the returning date field
+    And User clicks on the search button
+}
 end
 
 When(/^I read the yml file, I should see the data$/) do
@@ -56,4 +62,9 @@ When(/^I read the yml file, I should see the data$/) do
   p @test_info.fetch 'name'
   p @test_info['qa']['company']
   p 'done'
+end
+
+Then(/^verify the flight search results are displayed by sort order of price$/) do
+  actual_prices = on(OrbitzFlightResultsPage).get_all_flight_prices
+  expect(actual_prices).should eql actual_prices.sort
 end
