@@ -77,3 +77,8 @@ Feature: Orbitz Flight Search
   Scenario: Verify the flight search results are displayed by sort order of price
     When user search for the future flights
     Then verify the flight search results are displayed by sort order of price
+
+  Scenario: Verify the filter functionality works
+    When user search for the future flights
+    And user choose the first airline filter
+    Then verify the results are filtered accordingly

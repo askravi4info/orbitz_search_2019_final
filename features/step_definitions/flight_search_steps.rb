@@ -68,3 +68,16 @@ Then(/^verify the flight search results are displayed by sort order of price$/) 
   actual_prices = on(OrbitzFlightResultsPage).get_all_flight_prices
   expect(actual_prices).should eql actual_prices.sort
 end
+
+And(/^user choose the first airline filter$/) do
+  on(OrbitzFlightResultsPage).select_first_airline_filter
+end
+
+Then(/^verify the results are filtered accordingly$/) do
+  on(OrbitzFlightResultsPage) do |page|
+    filter_details = page.get_first_airline_filter_details
+    all_flight_names = page.get_all_flight_names
+    expect(all_flight_names).should include filter_details[1]
+    expect(page.get_no_of_flights).should eql filter_details[0]
+  end
+end

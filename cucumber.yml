@@ -1,1 +1,8 @@
-default: --no-source --color --format pretty --format html --out report.html --tags ~@wip
+<%
+  unique_time_stamp = Time.now.strftime("%m_%d_%m_%s")
+  %>
+
+default: --no-source --color --format pretty --format html --out report_results/report_<%=unique_time_stamp%>.html
+qa_smoke: --no-source --color --format pretty --format html --out report_results/report_<%=unique_time_stamp%>.html --tags @smoke Env['env'] = 'qa'
+dev_smoke: --no-source --color --format pretty --format html --out report_results/report_<%=unique_time_stamp%>.html --tags @smoke Env['env'] = 'dev'
+dev_regression: --no-source --color --format pretty --format html --out report_results/report_<%=unique_time_stamp%>.html --tags @regression Env['env'] = 'dev'

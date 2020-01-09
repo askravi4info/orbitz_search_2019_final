@@ -5,7 +5,7 @@ class OrbitzHomePage
   include PageObject
   include UtilitiesModule
 
-  page_url 'www.orbitz.com'
+  page_url $orbitz_url
 
   button(:select_flight_tab, id: 'tab-flight-tab-hp')
   label(:choose_round_trip, id: 'flight-type-roundtrip-label-hp-flight')
